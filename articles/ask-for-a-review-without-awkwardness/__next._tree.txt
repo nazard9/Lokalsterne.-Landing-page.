@@ -1,0 +1,12 @@
+:HL["/_next/static/chunks/0r4zgagh05_kl.css","style"]
+:HL["/_next/static/media/gantari_latin_ext_wght_normal-s.p.31bj7ertwudtd.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/gantari_latin_wght_normal-s.p.35v3p_kus6v_b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/hero/avatar-1.png","image"]
+:HL["/brand/logo.svg","image"]
+:HL["/icons/instagram.svg","image"]
+:HL["/icons/linkedin.svg","image"]
+:HL["/icons/facebook.svg","image"]
+3:[["children",{"s":"__PAGE__","h":160}]]
+2:[["children",{"s":{"n":"slug","t":"d","k":"ask-for-a-review-without-awkwardness","s":[]},"h":96,"c":"$Q3"}]]
+1:[["children",{"s":"articles","h":96,"c":"$Q2"}]]
+0:{"b":"rfWTT-SjyJNkhnlg9wgu7","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
