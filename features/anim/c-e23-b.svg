@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="112" height="112" viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Ellipse 23">
+<use xlink:href="#stroke0_0_11" fill="url(#paint0_linear_0_11)"/>
+<use xlink:href="#stroke0_0_11" fill="url(#paint1_linear_0_11)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_11" x1="56" y1="0" x2="164" y2="146" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F6F6F6"/>
+<stop offset="1" stop-color="#E5E5E5"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_11" x1="56" y1="0" x2="164" y2="146" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F6F6FB"/>
+<stop offset="1" stop-color="#E7E7F0"/>
+</linearGradient>
+<path id="stroke0_0_11" d="M112 56C112 86.9279 86.9279 112 56 112C25.0721 112 0 86.9279 0 56C0 25.0721 25.0721 0 56 0C86.9279 0 112 25.0721 112 56ZM11.3994 56C11.3994 80.6322 31.3678 100.601 56 100.601C80.6322 100.601 100.601 80.6322 100.601 56C100.601 31.3678 80.6322 11.3994 56 11.3994C31.3678 11.3994 11.3994 31.3678 11.3994 56Z"/>
+</defs>
+</svg>

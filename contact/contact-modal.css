@@ -1,0 +1,160 @@
+/* Contact form modal — Figma "Opiny LP Des for Dev", frame "filter" (1:24458) */
+
+html.cm-lock { overflow: hidden; }
+
+/* Footer social icons: shown but disabled until the real profile links exist.
+   To enable one, give its <a> an href and remove aria-disabled. */
+footer a[aria-disabled="true"] {
+  display: block;
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cm-dialog {
+  box-sizing: border-box;
+  width: min(565px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 32px;
+  background: #fff;
+  color: #1a1a1a;
+  font-family: var(--font-sans, sans-serif);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.cm-dialog::backdrop {
+  /* same as the site's "Request a callback" dialog: ink/40 + blur-sm */
+  background: rgba(19, 17, 51, 0.4);
+  backdrop-filter: blur(8px);
+}
+.cm-dialog[open] { animation: cm-in 0.2s ease-out; }
+@keyframes cm-in { from { opacity: 0; transform: translateY(12px); } }
+@media (prefers-reduced-motion: reduce) { .cm-dialog[open] { animation: none; } }
+
+.cm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 48px;
+}
+@media (max-width: 639px) {
+  .cm-body { gap: 32px; padding: 32px 24px; }
+}
+
+.cm-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.cm-title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+.cm-close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin: -4px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.cm-close:hover { background: #f6f6fb; }
+.cm-close img { width: 24px; height: 24px; }
+
+.cm-form { display: flex; flex-direction: column; gap: 24px; }
+.cm-fields { display: flex; flex-direction: column; gap: 16px; }
+.cm-field { display: flex; flex-direction: column; gap: 12px; }
+.cm-label {
+  font-size: 16px;
+  line-height: 14px;
+  font-weight: 600;
+}
+.cm-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 56px;
+  padding: 0 25px;
+  border: 1px solid #dbdbdb;
+  border-radius: 9999px;
+  background: #fff;
+  color: #1a1a1a;
+  font: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+textarea.cm-input {
+  height: 140px;
+  padding: 19px 25px;
+  border-radius: 16px;
+  resize: vertical;
+  line-height: 1.5;
+}
+.cm-input:hover { border-color: #b9b6c4; }
+.cm-input:focus-visible { border-color: #2600ff; }
+.cm-input:user-invalid { border-color: #e5484d; }
+
+.cm-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #262626;
+  cursor: pointer;
+}
+.cm-consent a { color: #2600ff; text-decoration: underline; text-underline-offset: 2px; }
+.cm-check {
+  appearance: none;
+  flex: none;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  background: #fff center / 14px 14px no-repeat;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+.cm-check:checked {
+  border-color: #2600ff;
+  background-color: #2600ff;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+.cm-check:focus-visible { outline: 2px solid #2600ff; outline-offset: 2px; }
+.cm-check:user-invalid { border-color: #e5484d; }
+
+.cm-send {
+  height: 64px;
+  margin-top: 16px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 86px;
+  background: #2600ff;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+.cm-send:hover { filter: brightness(1.1); }
+.cm-send:active { filter: brightness(0.95); }
+.cm-send:focus-visible { outline: 2px solid #2600ff; outline-offset: 2px; }
+.cm-send[disabled] { opacity: 0.6; cursor: progress; }
+
+.cm-error { margin: -8px 0 0; color: #e5484d; font-size: 14px; line-height: 20px; }
+.cm-done { margin: 0; font-size: 16px; line-height: 1.6; color: #55525e; }

@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="151" height="151" viewBox="0 0 151 151" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Ellipse 17">
+<use xlink:href="#stroke0_0_4" fill="url(#paint0_radial_0_4)"/>
+<use xlink:href="#stroke0_0_4" fill="url(#paint1_radial_0_4)"/>
+<path d="M150.5 75.5C150.5 116.921 116.921 150.5 75.5 150.5C34.0786 150.5 0.5 116.921 0.5 75.5C0.5 34.0786 34.0786 0.5 75.5 0.5C116.921 0.5 150.5 34.0786 150.5 75.5Z" stroke="white"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(75.5 73) rotate(90) scale(78)">
+<stop offset="0.655994" stop-color="white"/>
+<stop offset="1" stop-color="#F2F2F2"/>
+</radialGradient>
+<radialGradient id="paint1_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(75.5 73) rotate(90) scale(78)">
+<stop offset="0.655994" stop-color="white"/>
+<stop offset="1" stop-color="#F2F2FF"/>
+</radialGradient>
+<path id="stroke0_0_4" d="M151 75.5C151 117.198 117.198 151 75.5 151C33.8025 151 0 117.198 0 75.5C0 33.8025 33.8025 0 75.5 0C117.198 0 151 33.8025 151 75.5Z"/>
+</defs>
+</svg>

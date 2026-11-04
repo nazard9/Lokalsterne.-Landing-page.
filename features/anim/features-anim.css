@@ -1,0 +1,275 @@
+/*
+ * "More customers with intelligent reviews" card animations.
+ * Mirrors the Figma prototype (Opiny LP Des for Dev): each card is a
+ * component with 2 variants; "While hovering" -> Smart Animate,
+ * easing "Slow" (spring: stiffness 80, damping 20, mass 1), 1250ms.
+ *
+ * Every animated layer (.fa-l) carries its two states as custom
+ * properties (--x1/--y1/--w1/--h1/--o1/--t1 and the *2 set); hovering
+ * the card switches to the *2 set and CSS transitions interpolate.
+ */
+
+.fa-stage {
+  --fa-dur: 1250ms;
+  --fa-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 415.67px;
+  height: 275px;
+  overflow: hidden;
+  transform-origin: 0 0;
+  transform: scale(var(--fa-scale, 1));
+  contain: layout paint;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-sans, sans-serif);
+}
+
+@supports (transition-timing-function: linear(0, 1)) {
+  .fa-stage {
+    /* Figma "Slow" spring sampled over 1250ms (overdamped, no overshoot) */
+    --fa-ease: linear(0, 0.0777, 0.2275, 0.3829, 0.5197, 0.6318, 0.7203, 0.7888,
+      0.8412, 0.8809, 0.9109, 0.9335, 0.9505, 0.9633, 0.9729, 0.98, 0.9854,
+      0.9895, 0.9925, 0.9948, 0.9965, 0.9978, 0.9987, 0.9995, 1);
+  }
+}
+
+.fa-ready > .fa-stage { opacity: 1; }
+.fa-ready > img { visibility: hidden; }
+
+.fa-stage img { display: block; max-width: none; }
+.fa-fill { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fa-s { position: absolute; }
+
+/* ---------- animated layer ---------- */
+.fa-l {
+  position: absolute;
+  left: var(--x1);
+  top: var(--y1);
+  width: var(--w1);
+  height: var(--h1);
+  opacity: var(--o1);
+  transform: var(--t1);
+  transition-property: left, top, width, height, opacity, transform;
+  transition-duration: var(--fa-dur);
+  transition-timing-function: var(--fa-ease);
+}
+:is(.fa-card:hover, .fa-card.fa-on) .fa-l {
+  left: var(--x2);
+  top: var(--y2);
+  width: var(--w2);
+  height: var(--h2);
+  opacity: var(--o2);
+  transform: var(--t2);
+}
+
+/* cross-fade between the two variants' fills */
+.fa-xa, .fa-xb {
+  transition: opacity var(--fa-dur) var(--fa-ease);
+}
+.fa-xb { opacity: 0; }
+:is(.fa-card:hover, .fa-card.fa-on) .fa-xa { opacity: 0; }
+:is(.fa-card:hover, .fa-card.fa-on) .fa-xb { opacity: 1; }
+
+/* ---------- shared pieces ---------- */
+.fa-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fa-map > div {
+  flex: none;
+  position: relative;
+  transform: rotate(30deg) scale(1, 0.87) skewX(-30deg);
+}
+
+.fa-av {
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  border-radius: 150px;
+  background: #fff;
+  overflow: hidden;
+}
+.fa-av > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.fa-av img.fa-crop { position: absolute; inset: auto; object-fit: fill; }
+
+/* ---------- card 1: More visibility ---------- */
+.fa-v {
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 415.67 275' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(2.4167 9.65 -14.586 3.6528 207.83 137.5)'><stop stop-color='rgba(246,246,251,0)' offset='0'/><stop stop-color='rgba(246,246,251,1)' offset='1'/></radialGradient></defs></svg>") 0 0 / 100% 100% no-repeat;
+}
+/* scaling rings keep a constant 2px stroke like Figma Smart Animate */
+.fa-ring {
+  box-sizing: border-box;
+  border: 2px solid #2600ff;
+  border-radius: 50%;
+  background: radial-gradient(51.655% 51.655% at 50% 48.342%,
+    rgba(255, 255, 255, 0) 65.6%, #f2f2f2 100%);
+}
+.fa-vig-v {
+  background: radial-gradient(closest-side, rgba(246, 246, 251, 0) 60%, #f6f6fb 100%);
+}
+.fa-pin > img {
+  position: absolute;
+  left: -27.14%;
+  top: -16.43%;
+  width: 154.29%;
+  height: 154.29%;
+}
+
+/* ---------- card 2: Powerful insights ---------- */
+.fa-chart {
+  overflow: hidden;
+  filter: drop-shadow(0 9.391px 10.15px rgba(0, 0, 0, 0.04));
+}
+.fa-chart svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+.fa-vig-i {
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 427 284' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(11.45 12.95 -19.471 17.215 214 123.5)'><stop stop-color='rgba(246,246,251,0)' offset='0.6'/><stop stop-color='rgba(246,246,251,1)' offset='1'/></radialGradient></defs></svg>") 0 0 / 100% 100% no-repeat;
+}
+
+/* map pin: white drop + grey disc with platform icon (64px base) */
+.fa-mpin-drop {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 4.5px);
+  width: 60.34px;
+  height: 60.34px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fa-mpin-drop > div {
+  flex: none;
+  width: 42.667px;
+  height: 42.667px;
+  background: #fff;
+  border-radius: 999px 999px 0 999px;
+  transform: rotate(45deg);
+}
+.fa-mpin-disc {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 4.19px);
+  width: 33.524px;
+  height: 33.524px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-l.fa-badges { transform-origin: 0 0; }
+.fa-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap var(--fa-dur) var(--fa-ease);
+}
+.fa-badge {
+  box-sizing: border-box;
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 48px;
+  height: 48px;
+  padding: 0 8px 0 11px;
+  border: 2px solid #f6f6f6;
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+  transition-property: width, padding-left;
+  transition-duration: var(--fa-dur);
+  transition-timing-function: var(--fa-ease);
+}
+.fa-badge > img { flex: none; }
+:is(.fa-card:hover, .fa-card.fa-on) .fa-badges-row { gap: 6.4px; }
+:is(.fa-card:hover, .fa-card.fa-on) .fa-badge { width: 76px; padding-left: var(--pl2); }
+
+/* rolling counters */
+.fa-num {
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  background: #fff;
+}
+.fa-badge .fa-num {
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  transition: opacity var(--fa-dur) var(--fa-ease);
+}
+:is(.fa-card:hover, .fa-card.fa-on) .fa-badge .fa-num { opacity: 1; }
+.fa-num-t {
+  color: #131133;
+  font-weight: 700;
+  text-align: center;
+  white-space: pre;
+}
+.fa-badge .fa-num-t { font-size: 14px; line-height: 20px; }
+.fa-num-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #fff 6.4027%, rgba(255, 255, 255, 0) 22.863%,
+    rgba(255, 255, 255, 0) 71.11%, #fff 90.409%);
+}
+
+/* ---------- card 3: More customers ---------- */
+.fa-funnel-mask {
+  -webkit-mask: url("/features/anim/c-mask.svg") 0 0 / 100% 100% no-repeat;
+  mask: url("/features/anim/c-mask.svg") 0 0 / 100% 100% no-repeat;
+}
+.fa-vig-c {
+  background: linear-gradient(180deg, #f6f6f6 0%, rgba(246, 246, 246, 0) 18.52%,
+    rgba(246, 246, 246, 0) 78.969%, #f6f6f6 96.303%);
+}
+.fa-progress { filter: drop-shadow(0 4.17px 10.56px rgba(38, 0, 255, 0.47)); }
+.fa-progress svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.fa-l.fa-arc { transform-origin: 50% 50%; }
+.fa-disc { border-radius: 50%; background: #fff; }
+.fa-cbox { overflow: hidden; }
+.fa-cbox .fa-num-t { font-size: 16px; line-height: 51px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-stage, .fa-stage * { transition-duration: 0.01ms !important; }
+}
+
+/* ---------- hero "Scroll down" link (→ #features) ---------- */
+.ls-scroll {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  color: var(--color-text, #262626);
+  transition: color 0.2s;
+}
+.ls-scroll:hover { color: var(--color-brand, #2600ff); }
+.ls-scroll:focus-visible { outline: 2px solid var(--color-brand, #2600ff); outline-offset: 2px; }
+.ls-scroll-arrow {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  animation: ls-bob 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.ls-scroll-arrow .icon { rotate: 90deg; }
+@keyframes ls-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ls-scroll-arrow { animation: none; }
+}
